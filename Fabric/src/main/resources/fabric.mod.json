@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "noophaestus",
+  "version": "${version}",
+  "name": "Noophaestus",
+  "description": "An addon for Hex Casting that involves manipulation, creation and modification of enchantments.",
+  "authors": [
+    "SuperKnux"
+  ],
+  "contact": {
+    "homepage": "https://superknux.github.io/noophaestus",
+    "sources": "https://github.com/SuperKnux/noophaestus"
+  },
+  "license": "MIT",
+  "icon": "assets/noophaestus/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [{
+      "adapter": "kotlin",
+      "value": "at.ski.noophaestus.fabric.FabricNoophaestus"
+    }],
+    "client": [{
+      "adapter": "kotlin",
+      "value": "at.ski.noophaestus.fabric.FabricNoophaestusClient"
+    }],
+    "server": [{
+      "adapter": "kotlin",
+      "value": "at.ski.noophaestus.fabric.FabricNoophaestusServer"
+    }],
+    "fabric-datagen": [{
+      "adapter": "kotlin",
+      "value": "at.ski.noophaestus.fabric.datagen.FabricNoophaestusDatagen"
+    }],
+    "modmenu": [{
+      "adapter": "kotlin",
+      "value": "at.ski.noophaestus.fabric.FabricNoophaestusModMenu"
+    }]
+  },
+  "mixins": [
+    "noophaestus-common.mixins.json",
+    "noophaestus-fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${versions.minecraft}",
+    "fabricloader": ">=${versions.fabric_loader}",
+    "fabric-api": ">=${versions.fabric_api}",
+    "fabric-language-kotlin": ">=${versions.kotlin_fabric}",
+    "architectury": ">=${versions.architectury}",
+    "hexcasting": ">=${versions.hexcasting_dependency}",
+    "cloth-config": ">=${versions.clothConfig}"
+  },
+  "suggests": {
+    "modmenu": ">=${versions.modMenu}"
+  }
+}

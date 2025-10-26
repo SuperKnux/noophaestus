@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "at.ski.noophaestus.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "MixinDatagenMain"
+  ],
+  "plugin": "at.ski.noophaestus.mixin.NoophaestusMixinConfigPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

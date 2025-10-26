@@ -1,0 +1,22 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/updating/#never-change-the-answers-file-manually
+_commit: v2.2.1
+_src_path: gh:FallingColors/hexdummy
+advanced: true
+capitalize_platforms: true
+classname: Noophaestus
+default_branch: main
+description: An addon for Hex Casting that involves manipulation, creation and modification
+    of enchantments.
+display_name: Noophaestus
+github_repo: noophaestus
+github_user: SuperKnux
+homepage_url: https://superknux.github.io/noophaestus
+java_package: at.ski.noophaestus
+kotlin_package: at.ski.noophaestus
+mappings_name: Mojmap
+minecraft_version_in_mod_version: true
+mit_license: true
+mod_version: 0.1.0
+modid: noophaestus
+sources_url: https://github.com/SuperKnux/noophaestus
