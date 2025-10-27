@@ -1,28 +1,6 @@
-build/
-*.ipr
-run/
-*.iws
-out/
-*.iml
-.gradle/
-output/
-bin/
-.vscode/*
-
-.classpath
-.project
-.idea/
-classes/
-.metadata
-.settings
-*.launch
-.DS_Store
-
-.architectury-transformer
-
 # hexdoc
-_site/
-_checkout/
+
+/_site/
 __gradle_version__.py
 .hexdoc*/
 

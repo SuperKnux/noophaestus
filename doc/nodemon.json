@@ -3,9 +3,10 @@
         "doc/src",
         "doc/resources",
         "doc/hexdoc.toml",
-        "*/src/*/resources"
+        "Common/src/main/resources/assets/*/lang",
+        "Common/src/main/resources/assets/noophaestus/patchouli_books"
     ],
     "ignore": ["**/generated/**"],
     "ext": "jinja,html,css,js,ts,toml,json,json5,py",
-    "exec": "uv run hexdoc serve"
+    "exec": "hexdoc serve"
 }

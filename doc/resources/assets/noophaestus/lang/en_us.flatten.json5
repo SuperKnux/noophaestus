@@ -2,7 +2,7 @@
   hexdoc: {
     noophaestus: {
       title: "Noophaestus Book",
-      description: "An addon for Hex Casting that involves manipulation, creation and modification of enchantments.",
+      description: "The Noophaestus Book, all in one place.",
     },
-  }
+  },
 }

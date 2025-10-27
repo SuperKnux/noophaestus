@@ -1,54 +1,43 @@
 modid = "noophaestus"
-book = "hexcasting:thehexbook"
+book = "noophaestus:noophaestusbook"
+default_lang = "en_us"
+default_branch = "main"
 
 resource_dirs = [  # top takes priority
+    # hexdoc-only resources
     "resources",
+    # resource dirs for Noophaestus
     "{$_common.src}/main/resources",
     { path="{$_common.src}/generated/resources", required=false },
     "{$_fabric.src}/main/resources",
     { path="{$_fabric.src}/generated/resources", required=false },
     "{$_forge.src}/main/resources",
     { path="{$_forge.src}/generated/resources", required=false },
-    { modid="hexcasting" },
+    # other hexdoc plugins
     { modid="minecraft" },
     { modid="hexdoc" },
 ]
 export_dir = "src/hexdoc_noophaestus/_export/generated"
 
 [template]
-icon = "{$_common.src}/main/resources/assets/noophaestus/icon.png"
+icon = "icon.png"
 include = [
     "noophaestus",
-    "hexcasting",
     "hexdoc",
 ]
 
 [template.args]
 mod_name = "Noophaestus"
 author = "SuperKnux"
-show_landing_text = false
-
-[extra.hexcasting]
-# NOTE: "!Raw" means "don't apply variable interpolation to this value"
-_pattern_regex = { "!Raw"='make\("(?P<name>[^"]+)",\s*HexDir\.(?P<startdir>\w+),\s*"(?P<signature>[qweasd]+)"' }
-
-[[extra.hexcasting.pattern_stubs]]
-path = "{$_common.kotlin}/registry/NoophaestusActions.kt"
-regex = "{^_pattern_regex}"
+show_landing_text = true
 
 # platforms
 
 [_common]
 src = "../Common/src"
-java = "{src}/main/java/at/ski/noophaestus"
-kotlin = "{src}/main/kotlin/at/ski/noophaestus"
 
 [_fabric]
 src = "../Fabric/src"
-java = "{src}/main/java/at/ski/noophaestus/fabric"
-kotlin = "{src}/main/kotlin/at/ski/noophaestus/fabric"
 
 [_forge]
 src = "../Forge/src"
-java = "{src}/main/java/at/ski/noophaestus/forge"
-kotlin = "{src}/main/kotlin/at/ski/noophaestus/forge"

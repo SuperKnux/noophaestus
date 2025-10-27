@@ -1,32 +1,41 @@
 from importlib.resources import Package
+from typing_extensions import override
 
+from hexdoc.core import Properties
 from hexdoc.plugin import (
     HookReturn,
+    LoadTaggedUnionsImpl,
     ModPlugin,
-    ModPluginImpl,
+    ModPluginImplWithProps,
     ModPluginWithBook,
     hookimpl,
 )
-from typing_extensions import override
 
 import hexdoc_noophaestus
 
-from .__gradle_version__ import FULL_VERSION, MINECRAFT_VERSION, MOD_ID, MOD_VERSION
+from .__gradle_version__ import FULL_VERSION, GRADLE_VERSION
 from .__version__ import PY_VERSION
+from ._export import generated
+from .patchouli import pages
 
 
-class NoophaestusPlugin(ModPluginImpl):
+class NoophaestusPlugin(ModPluginImplWithProps, LoadTaggedUnionsImpl):
     @staticmethod
     @hookimpl
-    def hexdoc_mod_plugin(branch: str) -> ModPlugin:
-        return NoophaestusModPlugin(branch=branch)
+    def hexdoc_mod_plugin(branch: str, props: Properties) -> ModPlugin:
+        return NoophaestusModPlugin(branch=branch, props=props)
+    
+    @staticmethod
+    @hookimpl
+    def hexdoc_load_tagged_unions() -> HookReturn[Package]:
+        return [pages]
 
 
 class NoophaestusModPlugin(ModPluginWithBook):
     @property
     @override
     def modid(self) -> str:
-        return MOD_ID
+        return "noophaestus"
 
     @property
     @override
@@ -36,7 +45,7 @@ class NoophaestusModPlugin(ModPluginWithBook):
     @property
     @override
     def mod_version(self) -> str:
-        return f"{MOD_VERSION}+{MINECRAFT_VERSION}"
+        return GRADLE_VERSION
 
     @property
     @override
@@ -45,13 +54,8 @@ class NoophaestusModPlugin(ModPluginWithBook):
 
     @override
     def resource_dirs(self) -> HookReturn[Package]:
-        # lazy import because generated may not exist when this file is loaded
-        # eg. when generating the contents of generated
-        # so we only want to import it if we actually need it
-        from ._export import generated
-
-        return generated
-
+        return [generated]
+    
     @override
     def jinja_template_root(self) -> tuple[Package, str]:
         return hexdoc_noophaestus, "_templates"
