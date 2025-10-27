@@ -16,8 +16,11 @@ dependencies {
     modApi(libs.architectury)
 
     modApi(libs.hexcasting.common)
+    modApi(libs.moreiotas.common)
 
     modApi(libs.clothConfig.common)
+    modApi(libs.inline.common)
+
 
     libs.mixinExtras.common.also {
         implementation(it)

@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger
 import at.ski.noophaestus.config.NoophaestusServerConfig
 import at.ski.noophaestus.networking.NoophaestusNetworking
 import at.ski.noophaestus.registry.NoophaestusActions
+import at.ski.noophaestus.registry.NoophaestusArithmetics
+import at.ski.noophaestus.registry.NoophaestusIotaTypes
 
 object Noophaestus {
     const val MODID = "noophaestus"
@@ -20,6 +22,8 @@ object Noophaestus {
         NoophaestusServerConfig.init()
         initRegistries(
             NoophaestusActions,
+            NoophaestusIotaTypes,
+            NoophaestusArithmetics,
         )
         NoophaestusNetworking.init()
     }

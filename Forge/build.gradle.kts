@@ -74,6 +74,11 @@ dependencies {
     modLocalRuntime(libs.patchouli.forge)
     modLocalRuntime(libs.caelus)
     modLocalRuntime(libs.inline.forge) { isTransitive = false }
+    modLocalRuntime(libs.moreiotas.forge) {
+        exclude(module = "paucal-forge-1.20.1")
+        exclude(module = "hexcasting-forge-1.20.1")
+        exclude(module = "forge")
+    }
 
     modApi(libs.clothConfig.forge)
 

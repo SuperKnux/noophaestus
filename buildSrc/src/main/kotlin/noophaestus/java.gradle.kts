@@ -35,6 +35,7 @@ repositories {
     maven { url = uri("https://maven.terraformersmc.com/releases") }
     maven { url = uri("https://maven.theillusivec4.top") } // Caelus
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge") }
+    maven { url = uri("https://pkgs.dev.azure.com/hexxy-media/artifacts/_packaging/community/maven/v1") }
     exclusiveContent {
         filter {
             includeGroup("maven.modrinth")

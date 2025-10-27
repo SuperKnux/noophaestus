@@ -17,12 +17,11 @@ class NoophaestusActionTags(
 ) : TagsProvider<ActionRegistryEntry>(output, HexRegistries.ACTION, provider) {
     override fun addTags(provider: HolderLookup.Provider) {
         // per-world great spells
-        for (entry in arrayOf(
-            NoophaestusActions.GREAT_CONGRATULATE,
+        /**for (entry in arrayOf(
         )) {
             tag(HexTags.Actions.CAN_START_ENLIGHTEN).add(entry.key)
             tag(HexTags.Actions.PER_WORLD_PATTERN).add(entry.key)
             tag(HexTags.Actions.REQUIRES_ENLIGHTENMENT).add(entry.key)
-        }
+        } */
     }
 }
