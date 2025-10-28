@@ -16,10 +16,14 @@ dependencies {
     modApi(libs.architectury)
 
     modApi(libs.hexcasting.common)
-    modApi(libs.moreiotas.common)
+    modApi(libs.moreiotas.common) {
+        isTransitive = false
+    }
 
-    modApi(libs.clothConfig.common)
-    modApi(libs.inline.common)
+    modApi(libs.clothConfig.common) { isTransitive = false }
+    modApi(libs.inline.common) {
+        isTransitive = false
+    }
 
 
     libs.mixinExtras.common.also {

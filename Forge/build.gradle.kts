@@ -75,7 +75,6 @@ dependencies {
     modLocalRuntime(libs.caelus)
     modLocalRuntime(libs.inline.forge) {
         isTransitive = false
-        exclude("com.llamalad7.mixinextras")
     }
     modLocalRuntime(libs.moreiotas.forge) {
         exclude(module = "paucal-forge-1.20.1")
@@ -83,7 +82,7 @@ dependencies {
         exclude(module = "forge")
     }
 
-    modApi(libs.clothConfig.forge)
+    modApi(libs.clothConfig.forge) { isTransitive = false }
 
     libs.mixinExtras.common.also {
         compileOnly(it)
