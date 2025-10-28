@@ -1,8 +1,8 @@
 # hexdoc-noophaestus
 
-<a href="https://github.com/hexdoc-dev/hexdoc"><img src="https://img.shields.io/endpoint?url=https://hexxy.media/api/v0/badge/hexdoc?label=1" alt="powered by hexdoc" style="max-width:100%;"></a>
+Python web book docgen and [hexdoc](https://pypi.org/project/hexdoc) plugin for Noophaestus.
 
-[hexdoc](https://pypi.org/project/hexdoc) plugin for Noophaestus's web book.
+An addon for Hex Casting that involves manipulation, creation and modification of enchantments.
 
 ## Version scheme
 
@@ -17,17 +17,14 @@ For example:
 
 ## Setup
 
-Install Python 3.11 and Node 18 (20+ is **not** currently supported).
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then:
 
 ```sh
-python3.11 -m venv venv
+uv sync
 
-.\venv\Scripts\activate   # Windows
-. venv/bin/activate.fish  # fish
-source venv/bin/activate  # everything else
-
-# run from the repo root, not doc/
-pip install -e .[dev]
+.\.venv\Scripts\activate   # Windows
+. .venv/bin/activate.fish  # fish
+source .venv/bin/activate  # everything else
 ```
 
 ## Usage
@@ -36,24 +33,28 @@ For local testing, create a file called `.env` in the repo root following this t
 ```sh
 GITHUB_REPOSITORY=SuperKnux/noophaestus
 GITHUB_SHA=main
-GITHUB_PAGES_URL=https://superknux.github.io/noophaestus/
+GITHUB_PAGES_URL=https://superknux.github.io/noophaestus
 ```
 
 Useful commands:
+
 ```sh
+# update your Python environment and lockfile if you added new dependencies
+uv sync
+
 # show help
 hexdoc -h
 
-# build, merge, and serve the web book in watch mode
+# render and serve the web book in watch mode
 nodemon --config doc/nodemon.json
 
-# build, merge, and serve the web book
+# render and serve the web book
 hexdoc serve
 
 # build and merge the web book
 hexdoc build
 hexdoc merge
 
-# start a Python interpreter with some extra local variables
+# start the Python interpreter with some extra local variables
 hexdoc repl
 ```

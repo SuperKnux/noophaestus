@@ -1,37 +1,28 @@
 [build-system]
 requires = [
     "hatchling",
-    "hatch-gradle-version>=0.8.0",
+    "hatch-gradle-version>=0.9.8",
 ]
 build-backend = "hatchling.build"
 
+# project metadata
+
 [project]
 name = "hexdoc-noophaestus"
-dynamic = ["version", "dependencies", "optional-dependencies"]
-description = "hexdoc plugin for Noophaestus's web book."
+description = "An addon for Hex Casting that involves manipulation, creation and modification of enchantments."
 readme = "doc/README.md"
 authors = [
     { name="SuperKnux" },
 ]
-keywords = [
-    "hexdoc",
-]
-requires-python = ">=3.11"
+keywords = ["hexdoc"]
+requires-python = ">=3.12"
+dynamic = ["version", "dependencies", "optional-dependencies"]
 
 [project.urls]
-Homepage = "https://superknux.github.io/noophaestus/"
+Homepage = "https://superknux.github.io/noophaestus"
 Source = "https://github.com/SuperKnux/noophaestus"
 
-[tool.hatch.metadata.hooks.gradle-properties]
-dependencies = [
-    "hexdoc~=1!0.1.0a24",
-    { package="hexdoc-minecraft", op="~=", py-version="1.0.dev", key="minecraftVersion" },
-]
-
-[tool.hatch.metadata.hooks.gradle-properties.optional-dependencies]
-dev = [
-    "ruff~=0.11.2",
-]
+# project version
 
 [tool.hatch.version]
 scheme = "gradle"
@@ -39,12 +30,25 @@ source = "gradle-properties"
 py-path = "doc/src/hexdoc_noophaestus/__version__.py"
 key = "modVersion"
 
-[project.entry-points.hexdoc]
-noophaestus = "hexdoc_noophaestus._hooks:NoophaestusPlugin"
+# Python dependencies
+
+# required
+[tool.hatch.metadata.hooks.version-catalog]
+dependencies = [
+    { package="hexdoc-hexcasting", op="~=", py-version="1.0", key="hexcasting" },
+]
+
+# dev-only
+[dependency-groups]
+dev = [
+    "ruff",
+]
+
+# directory inclusion
 
 [tool.hatch.build]
 only-include = [
-    "doc/src",
+    "doc/src/hexdoc_noophaestus",
     "gradle.properties",
 ]
 artifacts = [
@@ -55,55 +59,52 @@ artifacts = [
 [tool.hatch.build.targets.wheel]
 sources = ["doc/src"]
 
+# hexdoc entry points
+
+[project.entry-points.hexdoc]
+noophaestus = "hexdoc_noophaestus._hooks:NoophaestusPlugin"
+
+# linting
+
 [tool.pyright]
-pythonVersion = "3.11"
+pythonVersion = "3.12"
 pythonPlatform = "All"
 
 include = ["doc/src"]
 extraPaths = ["doc/src"]
 
-typeCheckingMode = "basic"
+typeCheckingMode = "standard"
 
 strictDictionaryInference = true
 strictListInference = true
 strictSetInference = true
 
-reportAssertAlwaysTrue = "error"
 reportConstantRedefinition = "error"
-reportDeprecated = "error"
-reportDuplicateImport = "error"
-reportFunctionMemberAccess = "error"
-reportIncompatibleMethodOverride = "error"
-reportIncompatibleVariableOverride = "error"
 reportIncompleteStub = "error"
 reportInconsistentConstructor = "error"
-reportInvalidStringEscapeSequence = "error"
 reportInvalidStubStatement = "error"
-reportInvalidTypeVarUse = "error"
-reportMatchNotExhaustive = "error"
-reportMissingParameterType = "error"
-reportMissingTypeStubs = "error"
-reportOverlappingOverload = "error"
-reportSelfClsParameterName = "error"
-reportTypeCommentUsage = "error"
-reportUnknownParameterType = "error"
-reportUnnecessaryCast = "error"
-reportUnnecessaryContains = "error"
-reportUnsupportedDunderAll = "error"
-reportUntypedBaseClass = "error"
-reportUntypedClassDecorator = "error"
-reportUntypedFunctionDecorator = "error"
-reportUntypedNamedTuple = "error"
-reportWildcardImportFromLibrary = "error"
 
+reportDeprecated = "warning"
+reportDuplicateImport = "warning"
+reportMatchNotExhaustive = "warning"
+reportMissingParameterType = "warning"
 reportMissingTypeArgument = "warning"
+reportMissingTypeStubs = "warning"
 reportPrivateUsage = "warning"
+reportTypeCommentUsage = "warning"
 reportUnknownArgumentType = "warning"
 reportUnknownLambdaType = "warning"
 reportUnknownMemberType = "warning"
+reportUnknownParameterType = "warning"
 reportUnknownVariableType = "warning"
+reportUnnecessaryCast = "warning"
 reportUnnecessaryComparison = "warning"
+reportUnnecessaryContains = "warning"
 reportUnnecessaryIsInstance = "warning"
+reportUntypedBaseClass = "warning"
+reportUntypedClassDecorator = "warning"
+reportUntypedFunctionDecorator = "warning"
+reportUntypedNamedTuple = "warning"
 reportUnusedClass = "warning"
 reportUnusedExpression = "warning"
 reportUnusedFunction = "warning"

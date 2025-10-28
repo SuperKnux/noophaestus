@@ -1,12 +1,9 @@
 {
     "watch": [
-        "doc/src",
-        "doc/resources",
-        "doc/hexdoc.toml",
-        "Common/src/main/resources/assets/*/lang",
-        "Common/src/main/resources/assets/noophaestus/patchouli_books"
+        "doc",
+        "*/src/*/resources"
     ],
     "ignore": ["**/generated/**"],
     "ext": "jinja,html,css,js,ts,toml,json,json5,py",
-    "exec": "hexdoc serve"
+    "exec": "uv run hexdoc serve"
 }
