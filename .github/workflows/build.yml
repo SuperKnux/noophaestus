@@ -141,6 +141,44 @@ jobs:
         run: |
           cp build/ciArtifacts/*${{ matrix.modloader }}*.jar run/mods
 
+      - name: List files Forge will scan
+        if: matrix.modloader == 'forge'
+        run: |
+          echo "Contents of run/mods:"
+          ls -la run/mods || true
+          echo
+          echo "Validate each file is a proper JAR and show manifest:"
+          shopt -s nullglob
+          for f in run/mods/*.jar; do
+            echo "---- $f"
+            file "$f" || true
+            if unzip -l "$f" >/dev/null 2>&1; then
+              unzip -l "$f" | sed -n '1,5p;$p'
+              echo "MANIFEST for $f:"
+              unzip -p "$f" META-INF/MANIFEST.MF 2>/dev/null | sed -n '1,20p' || echo "No MANIFEST.MF"
+            else
+              echo "Not a valid ZIP/JAR (possible bad download): $f"
+            fi
+          done
+          echo
+          echo "Non-jar entries (could break scanning):"
+          find run/mods -maxdepth 1 -type f ! -name '*.jar' -printf '%f\n' || true
+
+      - name: Fail on invalid Forge mods
+        if: matrix.modloader == 'forge'
+        run: |
+          set -e
+          shopt -s nullglob
+          bad=0
+          for f in run/mods/*.jar; do
+            if ! unzip -l "$f" >/dev/null 2>&1; then
+              echo "Invalid JAR: $f"; bad=1
+            fi
+          done
+          if [ $bad -ne 0 ]; then
+            echo "One or more invalid JARs detected in run/mods. Failing early."
+            exit 1
+          fi
       - name: Run MC test client
         if: matrix.env == 'client'
         # sometimes the headlessmc launcher just hangs for no clear reason
