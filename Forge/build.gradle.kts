@@ -77,9 +77,7 @@ dependencies {
         isTransitive = false
     }
     modLocalRuntime(libs.moreiotas.forge) {
-        exclude(module = "paucal-forge-1.20.1")
-        exclude(module = "hexcasting-forge-1.20.1")
-        exclude(module = "forge")
+        isTransitive = false
     }
 
     modApi(libs.clothConfig.forge) { isTransitive = false }
