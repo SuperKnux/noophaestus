@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import at.ski.noophaestus.config.NoophaestusServerConfig
+import at.ski.noophaestus.interop.inline.InlineNoophaestus
 import at.ski.noophaestus.networking.NoophaestusNetworking
 import at.ski.noophaestus.registry.NoophaestusActions
 import at.ski.noophaestus.registry.NoophaestusArithmetics
@@ -26,6 +27,7 @@ object Noophaestus {
             NoophaestusArithmetics,
         )
         NoophaestusNetworking.init()
+        InlineNoophaestus.init()
     }
 
     fun initServer() {

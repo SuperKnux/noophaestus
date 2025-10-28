@@ -17,7 +17,12 @@ import at.petrak.hexcasting.api.utils.asCompound
 import at.petrak.hexcasting.xplat.IXplatAbstractions
 import at.ski.noophaestus.Noophaestus
 import at.ski.noophaestus.casting.iota.EnchantmentIota
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.ListTag
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.item.enchantment.Enchantment
 import ram.talia.moreiotas.api.casting.iota.ItemStackIota
 import ram.talia.moreiotas.api.getItemStack
 
@@ -31,9 +36,20 @@ object OpEnchantmentsFromItem : ConstMediaAction {
     ): List<Iota> {
         val stack = args.getItemStack(0, argc)
         val enchantments = stack.enchantmentTags
-        val enchantmentsToProcess = enchantments.onEach { it.asCompound.putBoolean(EnchantmentIota.TAG_POWER, false) }
-        enchantments.map { env.printMessage(EnchantmentIota.TYPE.display(it)) }
-        val enchantmentIotas = enchantmentsToProcess.map { requireNotNull(EnchantmentIota.TYPE.deserialize(it, null)) {
+        val enchantmentsSecond = ListTag()
+        for (enchantment in enchantments) {
+            val compound = CompoundTag()
+            compound.putString(EnchantmentIota.TAG_ID, enchantment.asCompound.getString("id"))
+            compound.putShort(EnchantmentIota.TAG_LEVEL, enchantment.asCompound.getShort("lvl"))
+            compound.putBoolean(EnchantmentIota.TAG_POWER, false)
+            enchantmentsSecond.add(compound)
+        }
+
+        for (enchantment in enchantmentsSecond) {
+           val instance = requireNotNull(BuiltInRegistries.ENCHANTMENT.get(ResourceLocation(enchantment.asCompound.getString(EnchantmentIota.TAG_ID)))).getFullname(enchantment.asCompound.getShort(EnchantmentIota.TAG_LEVEL).toInt())
+            env.printMessage(Component.literal("Enchantment: ").append(instance))
+        }
+        val enchantmentIotas = enchantmentsSecond.map { requireNotNull(EnchantmentIota.TYPE_GREATER.deserialize(it, null)) {
             emptyList<Iota>().asActionResult
         } }.asActionResult
         return enchantmentIotas

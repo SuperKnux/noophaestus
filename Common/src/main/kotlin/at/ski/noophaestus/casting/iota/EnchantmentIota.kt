@@ -59,7 +59,7 @@ class EnchantmentIota(enchantment: EnchantmentInstance, val isGreater: Boolean) 
 
             override fun display(tag: Tag): Component {
                 val enchantmentInstance = deserialize(tag, null).enchantment
-                return enchantmentInstance.enchantment.getFullname(enchantmentInstance.level).copy().withStyle { it.withColor(color) }
+                return enchantmentInstance.enchantment.getFullname(enchantmentInstance.level).copy().withStyle { it.withColor(color) }.append(": [enchantment:"+ BuiltInRegistries.ENCHANTMENT.getKey(enchantmentInstance.enchantment) + ":" + enchantmentInstance.level + "]")
             }
 
             override fun color(): Int {

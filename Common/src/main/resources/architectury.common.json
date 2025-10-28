@@ -1,6 +1,3 @@
 {
-  "accessWidener": "noophaestus.accesswidener",
-  "injected_interfaces": {
-    "net/minecraft/class_1799": ["at/ski/noophaestus/api/item/ItemStackAccessor"]
-  }
+  "accessWidener": "noophaestus.accesswidener"
 }

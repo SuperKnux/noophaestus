@@ -72,8 +72,8 @@ class EnchantmentGroupIota(var name: String, enchantments: EnchantmentGroup): Io
             ): EnchantmentGroupIota {
                 val list = tag as ListTag
                 val name = list[0].asCompound.getString(TAG_ENCH_GROUP_NAME)
-                val tags = list[1].asList
-                val enchantmentPairs = tags.map { Pair(EnchantmentIota.TYPE_GREATER.deserialize(it, null)!!, it.asCompound.getBoolean(TAG_ENCH_GROUP_IS_ACTIVE)) }.toMutableList()
+                val tags = list[0].asCompound.getCompound(TAG_ENCH_GROUP_TAGS)
+                val enchantmentPairs = tags.asList.map { Pair(EnchantmentIota.TYPE_GREATER.deserialize(it, null)!!, it.asCompound.getBoolean(TAG_ENCH_GROUP_IS_ACTIVE)) }.toMutableList()
                 return EnchantmentGroupIota(name, enchantmentPairs)
             }
 

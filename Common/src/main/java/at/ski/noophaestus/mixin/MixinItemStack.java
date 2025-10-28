@@ -33,7 +33,7 @@ public class MixinItemStack implements ItemStackAccessor {
     }
 
     @Override
-    public @NotNull ListTag noophaestus$getEnchantmentGroupTags() {
+    public @NotNull ListTag noophaestus_getEnchantmentGroupTags() {
         return tag != null ? tag.getList(TAG_ENCH_GROUP, CompoundTag.TAG_COMPOUND) : new ListTag();
     }
 }

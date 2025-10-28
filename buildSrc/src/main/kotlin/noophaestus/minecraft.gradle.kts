@@ -52,6 +52,7 @@ sourceSets {
     main {
         kotlin {
             srcDir(file("src/main/java"))
+            srcDir(file("src/main/kotlin"))
         }
         resources {
             srcDir(file("src/generated/resources"))
