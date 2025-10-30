@@ -1,4 +1,4 @@
-package at.ski.noophaestus.casting.arithmetic
+package at.ski.noophaestus.casting.arithmetic.operator
 
 import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic
 import at.petrak.hexcasting.api.casting.arithmetic.Arithmetic.*
@@ -18,14 +18,14 @@ import at.ski.noophaestus.registry.NoophaestusIotaTypes.ENCHANTMENT
 import net.minecraft.world.item.enchantment.EnchantmentInstance
 import java.util.function.Function
 
-object EnchantmentArithmetic : Arithmetic {
+object GreaterEnchantmentArithmetic : Arithmetic {
 
     @JvmField
     val OPS = listOf(
         ABS
     )
 
-    override fun arithName() = "enchantment_ops"
+    override fun arithName() = "greater_enchantment_ops"
 
     override fun opTypes(): Iterable<HexPattern> = OPS
 
@@ -37,7 +37,7 @@ object EnchantmentArithmetic : Arithmetic {
     }
 
     private fun enchantmentInstanceToIota(op: (EnchantmentIota) -> Iota) =
-        OperatorUnary(IotaMultiPredicate.any(ofType(EnchantmentIota.TYPE), ofType(EnchantmentIota.TYPE_GREATER))) {
+        OperatorUnary(IotaMultiPredicate.all(ofType(EnchantmentIota.TYPE_GREATER))) {
                 enchantment -> op(enchantment as EnchantmentIota)
         }
 }

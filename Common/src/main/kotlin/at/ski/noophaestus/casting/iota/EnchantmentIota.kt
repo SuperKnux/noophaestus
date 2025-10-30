@@ -37,8 +37,8 @@ class EnchantmentIota(enchantment: EnchantmentInstance, val isGreater: Boolean) 
     }
 
     companion object {
-        const val TAG_ID = "noophaestus:id"
-        const val TAG_LEVEL = "noophaestus:lvl"
+        const val TAG_ID = "id"
+        const val TAG_LEVEL = "lvl"
         const val TAG_POWER = "noophaestus:pwr"
 
         // Helper function to create IotaType with a specific color

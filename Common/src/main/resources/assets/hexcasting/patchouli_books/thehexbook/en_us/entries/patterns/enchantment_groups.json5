@@ -1,0 +1,12 @@
+{
+  name: "noophaestus.entry.enchantment_groups",
+  category: "hexcasting:patterns",
+  icon: "minecraft:enchanted_book",
+  advancement: "hexcasting:root",
+  pages: [
+    {
+      type: "patchouli:text",
+      text: "noophaestus.page.enchantment_groups.0"
+    },
+  ]
+}

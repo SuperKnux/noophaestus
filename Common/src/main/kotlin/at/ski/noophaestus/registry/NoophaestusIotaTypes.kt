@@ -11,6 +11,6 @@ object NoophaestusIotaTypes : NoophaestusRegistrar<IotaType<*>>(
     { HexIotaTypes.REGISTRY },
 ) {
     val ENCHANTMENT = register("enchantment") { EnchantmentIota.TYPE }
-    val GREATER_ENCHANTMENT = register("greater_enchantment") { EnchantmentIota.TYPE_GREATER }
+    val GREATER_ENCHANTMENT = register("enchantment/greater") { EnchantmentIota.TYPE_GREATER }
     val ENCHANTMENT_GROUP = register("enchantment_group") { EnchantmentGroupIota.TYPE }
 }

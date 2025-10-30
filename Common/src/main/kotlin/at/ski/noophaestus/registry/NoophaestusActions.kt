@@ -15,9 +15,9 @@ object NoophaestusActions : NoophaestusRegistrar<ActionRegistryEntry>(
     { HexActions.REGISTRY },
 ) {
 
-    val ITEM_ENCHANTMENTS = make("item_enchantments", HexDir.EAST, "wqwawqweewdwe", OpEnchantmentsFromItem)
-    val ENCHANTMENT_GROUP_CONSTRUCT = make("enchantment_group_construct", HexDir.WEST, "wwewdwwewawwawwq", OpConstructEnchGroup)
-    val ITEM_ENCHANTMENT_GROUPS = make("item_enchantment_groups", HexDir.EAST, "wwqwawwqwdwwdwwe", OpEnchantmentGroupsFromItem)
+    val ITEM_ENCHANTMENTS = make("enchantments/item", HexDir.EAST, "wqwawqweewdwe", OpEnchantmentsFromItem)
+    val ENCHANTMENT_GROUP_CONSTRUCT = make("enchantment_groups/construct", HexDir.WEST, "wwewdwwewawwawwq", OpConstructEnchGroup)
+    val ITEM_ENCHANTMENT_GROUPS = make("enchantment_groups/item", HexDir.EAST, "wwqwawwqwdwwdwwe", OpEnchantmentGroupsFromItem)
 
     private fun make(name: String, startDir: HexDir, signature: String, action: Action) =
         make(name, startDir, signature) { action }

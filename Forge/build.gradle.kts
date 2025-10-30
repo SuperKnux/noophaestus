@@ -76,13 +76,11 @@ dependencies {
     modLocalRuntime(libs.inline.forge) {
         isTransitive = false
     }
-    modLocalRuntime(libs.moreiotas.forge) {
-        exclude(module = "paucal-forge-1.20.1")
-        exclude(module = "hexcasting-forge-1.20.1")
-        exclude(module = "forge")
+    modApi(libs.moreiotas.forge) {
+        isTransitive = false
     }
 
-    modApi(libs.clothConfig.forge) { isTransitive = false }
+    modApi(libs.clothConfig.forge)
 
     libs.mixinExtras.common.also {
         compileOnly(it)

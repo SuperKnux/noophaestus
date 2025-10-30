@@ -70,7 +70,7 @@ dependencies {
     modLocalRuntime(libs.serializationHooks)
     modLocalRuntime(libs.trinkets)
     modLocalRuntime(libs.inline.fabric) { isTransitive = false }
-    modLocalRuntime(libs.moreiotas.fabric) {
+    modApi(libs.moreiotas.fabric) {
         exclude(module = "serialization-hooks")
     }
 

@@ -1,0 +1,28 @@
+{
+  name: "noophaestus.entry.enchantments",
+  category: "hexcasting:patterns",
+  icon: "minecraft:enchanted_book",
+  advancement: "hexcasting:root",
+  pages: [
+    {
+      type: "patchouli:text",
+      text: "noophaestus.page.enchantments.0"
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "noophaestus:enchantments/item",
+      anchor: "noophaestus:enchantments/item",
+      input: "item stack",
+      output: "[enchantment?]",
+      text: "noophaestus.page.enchantments.enchantments/item"
+    },
+    {
+      type: "hexcasting:pattern",
+      op_id: "hexcasting:abs",
+      anchor: "hexcasting:abs",
+      input: "enchantment",
+      output: "number",
+      text: "noophaestus.page.enchantments.enchantments/abs"
+    }
+  ]
+}
