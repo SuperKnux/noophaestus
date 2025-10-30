@@ -2,6 +2,7 @@
   "required": true,
   "package": "at.ski.noophaestus.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "noophaestus-fabric.refmap.json",
   "minVersion": "0.8",
   "client": [
   ],
