@@ -10,7 +10,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import at.petrak.hexcasting.common.lib.hex.HexEvalSounds
-import at.ski.noophaestus.api.item.ItemStackUtils
+import at.ski.noophaestus.api.item.ItemStackUtilsKt
 import at.ski.noophaestus.casting.iota.EnchantmentGroupIota
 import at.ski.noophaestus.casting.iota.EnchantmentIota
 import at.ski.noophaestus.casting.iota.EnchantmentIota.Companion.TYPE_GREATER
@@ -49,7 +49,6 @@ object OpConstructEnchGroup : Action {
         for (i in 0 until yoinkCount) {
             stack.removeLast()
         }
-        ItemStackUtils.noophaestus_recursivePrint(enchantmentGroup, 0, env)
         stack.add(EnchantmentGroupIota(name, enchantmentGroup))
 
         val image2 = image.withUsedOp().copy(stack = stack)

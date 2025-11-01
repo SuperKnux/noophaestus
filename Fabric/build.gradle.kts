@@ -73,6 +73,7 @@ dependencies {
     modApi(libs.moreiotas.fabric) {
         exclude(module = "serialization-hooks")
     }
+    modApi(libs.bookshelf.fabric)
 
     libs.mixinExtras.fabric.also {
         localRuntime(it)

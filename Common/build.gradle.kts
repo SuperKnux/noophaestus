@@ -25,6 +25,8 @@ dependencies {
         isTransitive = false
     }
 
+    modApi(libs.bookshelf.common)
+
 
     libs.mixinExtras.common.also {
         implementation(it)

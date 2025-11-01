@@ -6,6 +6,7 @@ import static net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantm
 import static net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantmentLevel;
 
 import at.ski.noophaestus.api.item.ItemStackAccessor;
+import at.ski.noophaestus.util.ItemStackUtils;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,18 +26,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 
-
+@Debug(export = true)
 @Mixin(EnchantmentHelper.class)
 public class MixinEnchantmentHelper {
     @ModifyReturnValue(method = "getEnchantments", at = @At("RETURN"))
     private static Map<Enchantment, Integer> noophaestus$returnZeroIfEmpty(Map<Enchantment, Integer> original, @Local(argsOnly = true) ItemStack stack) {
         CompoundTag tag = stack.getTag();
-        ListTag enchantmentGroups = new ListTag();
-        if (tag.contains("EnchantmentGroups", 9)) {
-            enchantmentGroups = tag.getList("EnchantmentGroups", 10);
-            if (enchantmentGroups.isEmpty()) {
-                return original;
-            }
+        if (tag == null) return original;
+        ListTag enchantmentGroups;
+        if (!tag.contains("EnchantmentGroups", 9)) {
+           return original;
+        }
+        enchantmentGroups = tag.getList("EnchantmentGroups", 10);
+        if (enchantmentGroups.isEmpty()) {
+            return original;
         }
 
         noophaestus$readAllGroupsAndMerge(enchantmentGroups, original);
@@ -53,35 +57,12 @@ public class MixinEnchantmentHelper {
 
     @Inject(method = "runIterationOnItem", at = @At("TAIL"))
     private static void noophaestus$mergeEnchantmentGroups(EnchantmentHelper.EnchantmentVisitor visitor, ItemStack stack, CallbackInfo ci) {
-
-        ListTag groupTag = ((ItemStackAccessor) (Object) stack).noophaestus_getEnchantmentGroupTags();
-
-        for(int i = 0; i < groupTag.size(); ++i) {
-            CompoundTag compoundTag = groupTag.getCompound(i);
-            ListTag enchantmentsTag = compoundTag.getList(TAG_ENCH_GROUP_TAGS, 10);
-            for (int j = 0; j < enchantmentsTag.size(); ++j) {
-                if (!enchantmentsTag.getCompound(j).getBoolean(TAG_ENCH_GROUP_IS_ACTIVE)) continue;
-                int finalJ = j;
-                System.out.println(finalJ);
-                BuiltInRegistries.ENCHANTMENT.getOptional(getEnchantmentId(enchantmentsTag.getCompound(j))).ifPresent((enchantment) -> visitor.accept(enchantment, getEnchantmentLevel(enchantmentsTag.getCompound(finalJ))));
-            }
-        }
+        ItemStackUtils.addEnchantmentGroups(visitor, stack, ci);
     }
 
-    @ModifyReturnValue(method = "getItemEnchantmentLevel", at = @At("RETURN"))
+    @ModifyReturnValue(method = "getItemEnchantmentLevel", at = @At(value = "RETURN"))
     private static int noophaestus$getItemEnchantmentLevel(int original, @Local(argsOnly = true) Enchantment enchantment, @Local(argsOnly = true) ItemStack stack) {
-        ResourceLocation resourceLocation = getEnchantmentId(enchantment);
-        ListTag groupTag = ((ItemStackAccessor) (Object) stack).noophaestus_getEnchantmentGroupTags();
-
-        for (int i = 0; i < groupTag.size(); ++i) {
-            CompoundTag compoundTag = groupTag.getCompound(i);
-            ResourceLocation resourceLocation2 = getEnchantmentId(compoundTag);
-            if (resourceLocation2 != null && resourceLocation2.equals(resourceLocation)) {
-                return getEnchantmentLevel(compoundTag);
-            }
-        }
-    
-        return original;
+        return ItemStackUtils.setEnchantmentGroups(original, enchantment, stack);
     }
 
     @Unique

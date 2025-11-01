@@ -79,6 +79,7 @@ dependencies {
     modApi(libs.moreiotas.forge) {
         isTransitive = false
     }
+    modApi(libs.bookshelf.forge)
 
     modApi(libs.clothConfig.forge)
 

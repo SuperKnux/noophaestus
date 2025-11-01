@@ -6,11 +6,9 @@ import at.ski.noophaestus.features.enchanting.EnchantmentGroup
 import net.minecraft.nbt.*
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.enchantment.EnchantmentInstance
-import ram.talia.moreiotas.api.asActionResult
 
 
-object ItemStackUtils {
+object ItemStackUtilsKt {
 
     fun ItemStack.noophaestus_enchantmentGroupTags(): ListTag =
         (this as ItemStackAccessor).noophaestus_getEnchantmentGroupTags()

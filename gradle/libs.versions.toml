@@ -30,6 +30,7 @@ forge-dependency = "47" # for mods.toml
 hexcasting = "0.11.2-pre-701"
 # FIXME: this should be 0.11.2, but that breaks the dev environment
 moreiotas = "0.1.1"
+bookshelf = "20.2.13"
 
 hexcasting-dependency = "0.11.1"
 paucal = "0.6.0-pre-118"
@@ -112,6 +113,10 @@ caelus = { module="top.theillusivec4.caelus:caelus-forge", version.ref="caelus" 
 inline-common = { module="com.samsthenerd.inline:inline-common", version.ref="inline"}
 inline-fabric = { module="com.samsthenerd.inline:inline-fabric", version.ref="inline" }
 inline-forge  = { module="com.samsthenerd.inline:inline-forge", version.ref="inline" }
+
+bookshelf-common = { module="net.darkhax.bookshelf:Bookshelf-Common-1.20.1", version.ref="bookshelf"}
+bookshelf-fabric = { module="net.darkhax.bookshelf:Bookshelf-Fabric-1.20.1", version.ref="bookshelf"}
+bookshelf-forge = { module="net.darkhax.bookshelf:Bookshelf-Forge-1.20.1", version.ref="bookshelf"}
 
 asm          = { module="org.ow2.asm:asm", version.ref="asm" }
 asm-analysis = { module="org.ow2.asm:asm-analysis", version.ref="asm" }

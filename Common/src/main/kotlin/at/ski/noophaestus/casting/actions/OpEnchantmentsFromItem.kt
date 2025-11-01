@@ -47,7 +47,6 @@ object OpEnchantmentsFromItem : ConstMediaAction {
 
         for (enchantment in enchantmentsSecond) {
            val instance = requireNotNull(BuiltInRegistries.ENCHANTMENT.get(ResourceLocation(enchantment.asCompound.getString(EnchantmentIota.TAG_ID)))).getFullname(enchantment.asCompound.getShort(EnchantmentIota.TAG_LEVEL).toInt())
-            env.printMessage(Component.literal("Enchantment: ").append(instance))
         }
         val enchantmentIotas = enchantmentsSecond.map { requireNotNull(EnchantmentIota.TYPE_GREATER.deserialize(it, null)) {
             emptyList<Iota>().asActionResult
