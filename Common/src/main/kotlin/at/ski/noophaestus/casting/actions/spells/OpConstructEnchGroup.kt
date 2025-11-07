@@ -15,6 +15,7 @@ import at.ski.noophaestus.casting.iota.EnchantmentGroupIota
 import at.ski.noophaestus.casting.iota.EnchantmentIota
 import at.ski.noophaestus.casting.iota.EnchantmentIota.Companion.TYPE_GREATER
 import at.ski.noophaestus.features.enchanting.EnchantmentGroup
+import at.ski.noophaestus.getPlatformIota
 import net.minecraft.network.chat.Component
 import ram.talia.moreiotas.api.getString
 
@@ -29,7 +30,7 @@ object OpConstructEnchGroup : Action {
         if (stack.isEmpty()) {
             throw MishapNotEnoughArgs(1, 0)
         }
-        val name = stack.takeLast(1).getString(0, stack.size - 1)
+        val name = getPlatformIota(stack.takeLast(1)[0], env.world)
         stack.removeLast()
 
         val yoinkCount = stack.takeLast(1).getPositiveIntUnderInclusive(0, stack.size - 1)
@@ -45,11 +46,11 @@ object OpConstructEnchGroup : Action {
                 else -> throw MishapInvalidIota.ofType(it, 0, "greater_enchantment")
             }
         }.toMutableList()
-        val enchantmentGroup = EnchantmentGroup(Component.literal(name), enchantmentPairs)
+        val enchantmentGroup = EnchantmentGroup(name.copy(), enchantmentPairs)
         for (i in 0 until yoinkCount) {
             stack.removeLast()
         }
-        stack.add(EnchantmentGroupIota(name, enchantmentGroup))
+        stack.add(EnchantmentGroupIota(name.string, enchantmentGroup))
 
         val image2 = image.withUsedOp().copy(stack = stack)
         return OperationResult(image2, listOf(), continuation, HexEvalSounds.THOTH)

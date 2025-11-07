@@ -14,6 +14,7 @@ dependencies {
     // Do NOT use other classes from fabric loader
     modImplementation(libs.fabric.loader)
     modApi(libs.architectury)
+    modCompileOnlyApi(libs.hexpose)
 
     modApi(libs.hexcasting.common)
     modApi(libs.moreiotas.common) {

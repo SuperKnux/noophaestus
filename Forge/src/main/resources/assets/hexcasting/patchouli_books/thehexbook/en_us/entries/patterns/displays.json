@@ -1,0 +1,110 @@
+{
+  "name": "hexpose.page.display_iotas.title",
+  "icon": "minecraft:writable_book",
+  "category": "hexcasting:patterns",
+  "advancement": "hexcasting:root",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "hexpose.page.display_iotas.0"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hexpose.page.display_iotas.1"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:create_display",
+      "anchor": "hexpose:create_display",
+      "input": "any",
+      "output": "display",
+      "text": "hexpose.page.create_display.summary"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hexpose.page.display_iotas.2"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_children",
+      "anchor": "hexpose:display_children",
+      "input": "display",
+      "output": "list of displays",
+      "text": "hexpose.page.display_children.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_color",
+      "anchor": "hexpose:display_color",
+      "input": "display, vector",
+      "output": "display",
+      "text": "hexpose.page.display_color.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_font",
+      "anchor": "hexpose:display_font",
+      "input": "display, number",
+      "output": "display",
+      "text": "hexpose.page.display_font.summary"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hexpose.page.display_font.description"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_bold",
+      "anchor": "hexpose:display_bold",
+      "input": "display, boolean",
+      "output": "display",
+      "text": "hexpose.page.display_bold.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_italics",
+      "anchor": "hexpose:display_italics",
+      "input": "display, boolean",
+      "output": "display",
+      "text": "hexpose.page.display_italics.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_underline",
+      "anchor": "hexpose:display_underline",
+      "input": "display, boolean",
+      "output": "display",
+      "text": "hexpose.page.display_underline.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_strikethrough",
+      "anchor": "hexpose:display_strikethrough",
+      "input": "display, boolean",
+      "output": "display",
+      "text": "hexpose.page.display_strikethrough.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:display_obfuscated",
+      "anchor": "hexpose:display_obfuscated",
+      "input": "display, boolean",
+      "output": "display",
+      "text": "hexpose.page.display_obfuscated.summary"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hexpose.page.display_iotas.noophaestus_disclaimer"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:get_message",
+      "anchor": "hexpose:get_message",
+      "input": "",
+      "output": "display, display, number",
+      "text": "hexpose.page.get_message.summary"
+    }
+  ],
+  "mit_comment": "Copyright (c) 2025 Miyu\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software."
+}

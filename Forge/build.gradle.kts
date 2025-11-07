@@ -81,6 +81,7 @@ dependencies {
     }
     modApi(libs.bookshelf.forge)
 
+
     modApi(libs.clothConfig.forge)
 
     libs.mixinExtras.common.also {

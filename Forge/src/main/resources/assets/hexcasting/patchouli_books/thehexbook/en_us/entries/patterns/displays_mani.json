@@ -1,0 +1,126 @@
+{
+  "name": "hexpose.page.displays_mani.title",
+  "icon": "minecraft:feather",
+  "category": "hexcasting:patterns",
+  "advancement": "hexcasting:root",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:compare_style",
+      "anchor": "hexpose:compare_style",
+      "input": "display, display",
+      "output": "boolean",
+      "text": "hexpose.page.compare_style.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:parse_display",
+      "anchor": "hexpose:parse_display",
+      "input": "display",
+      "output": "number/null",
+      "text": "hexpose.page.parse_display.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:split_display",
+      "anchor": "hexpose:split_display",
+      "input": "display, display",
+      "output": "list of displays",
+      "text": "hexpose.page.split_display.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexpose:disintegrate_display",
+      "anchor": "hexpose:disintegrate_display",
+      "input": "display",
+      "output": "list of displays",
+      "text": "hexpose.page.disintegrate_display.summary"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "hexpose.page.displays_mani.0"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:abs",
+      "anchor": "hexcasting:abs",
+      "input": "display",
+      "output": "number",
+      "text": "hexpose.page.abs_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:append",
+      "anchor": "hexcasting:append",
+      "input": "display, display",
+      "output": "display",
+      "text": "hexpose.page.append_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:unappend",
+      "anchor": "hexcasting:unappend",
+      "input": "display",
+      "output": "display, display",
+      "text": "hexpose.page.mul_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:add",
+      "anchor": "hexcasting:add",
+      "input": "display, display",
+      "output": "display",
+      "text": "hexpose.page.add_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:mul",
+      "anchor": "hexcasting:mul",
+      "input": "display, number",
+      "output": "display",
+      "text": "hexpose.page.mul_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:index",
+      "anchor": "hexcasting:index",
+      "input": "display, number",
+      "output": "display",
+      "text": "hexpose.page.index_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:slice",
+      "anchor": "hexcasting:slice",
+      "input": "display, number, number",
+      "output": "display",
+      "text": "hexpose.page.slice_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:replace",
+      "anchor": "hexcasting:replace",
+      "input": "display, number, display",
+      "output": "display",
+      "text": "hexpose.page.replace_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:remove_from",
+      "anchor": "hexcasting:remove_from",
+      "input": "display, number",
+      "output": "display",
+      "text": "hexpose.page.remove_text.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexcasting:reverse",
+      "anchor": "hexcasting:reverse",
+      "input": "display",
+      "output": "display",
+      "text": "hexpose.page.rev_text.summary"
+    }
+  ],
+  "mit_comment": "Copyright (c) 2025 Miyu\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software."
+}

@@ -1,8 +1,14 @@
 package at.ski.noophaestus.features.enchanting
 
+import at.petrak.hexcasting.api.utils.asCompound
+import at.petrak.hexcasting.api.utils.getString
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.ChatFormatting
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.StringTag
+import net.minecraft.nbt.TagParser
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.resources.ResourceLocation
@@ -44,9 +50,20 @@ class EnchantmentGroup(var name: MutableComponent, var enchantments: MutableList
 
         // Simple representation of the group name as a string; encode/decode using literal component
         private val NAME_CODEC: Codec<MutableComponent> =
-            Codec.STRING.xmap(
-                { s -> Component.literal(s).copy() },
-                { comp -> comp.string }
+            CompoundTag.CODEC.xmap(
+                { s ->
+                    if (!s.contains("name")) {
+                        Component.Serializer.toJson(Component.literal("arimfexendrapuse").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.OBFUSCATED))
+                    }
+                    when (val tag = s.get("name")) {
+                        is CompoundTag -> Component.Serializer.fromJson(tag.asCompound.getString("text") ?: Component.Serializer.toJson(Component.literal("arimfexendrapuse").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.OBFUSCATED)))
+                        is StringTag -> Component.Serializer.fromJson(Component.Serializer.toJson(Component.literal(tag.asString)))
+                        else -> Component.literal("arimfexendrapuse").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.OBFUSCATED)
+                    }
+                },
+                { comp ->
+                    TagParser.parseTag(Component.Serializer.toJson(comp))
+                }
             )
 
         // Final Codec for EnchantmentGroup:
