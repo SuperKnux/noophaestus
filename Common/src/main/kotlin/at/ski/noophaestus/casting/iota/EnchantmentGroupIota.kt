@@ -2,6 +2,8 @@ package at.ski.noophaestus.casting.iota
 
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.IotaType
+import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
+import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import at.petrak.hexcasting.api.utils.asCompound
 import at.petrak.hexcasting.api.utils.asList
 import at.petrak.hexcasting.api.utils.putCompound
@@ -44,6 +46,10 @@ class EnchantmentGroupIota(var name: String, enchantments: EnchantmentGroup): Io
         val builder = modifier(EnchGroupBuilder.from(enchantments))
 
         return EnchantmentGroupIota(enchantments.name, builder)
+    }
+
+    fun getEnchantments(): List<EnchantmentIota> {
+        return enchantments.enchantments.map { it.first.asActionResult(true)[0] }
     }
 
 
@@ -103,4 +109,13 @@ class EnchantmentGroupIota(var name: String, enchantments: EnchantmentGroup): Io
             }
         }
     }
+}
+
+fun EnchantmentGroup.asActionResult() = listOf(EnchantmentGroupIota(this.name, this))
+
+fun List<Iota>.getEnchantmentGroup(idx: Int, argc: Int = 0): EnchantmentGroup {
+    val x = this.getOrElse(idx) { throw MishapNotEnoughArgs(idx + 1, this.size) }
+    if (x is EnchantmentGroupIota)
+        return x.enchantments
+    throw MishapInvalidIota.ofType(x, if (argc == 0) idx else argc - (idx + 1), "enchantment_group")
 }
